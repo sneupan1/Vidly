@@ -15,6 +15,7 @@ namespace Vidly.Models
         [StringLength(255)]
         public string Name { get; set; }
 
+        [@CustomValidation]
         public string BirthDate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
