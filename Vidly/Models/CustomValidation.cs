@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using Vidly.Dtos;
 
 namespace Vidly.Models
 {
