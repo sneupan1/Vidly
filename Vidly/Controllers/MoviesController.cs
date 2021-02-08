@@ -46,10 +46,14 @@ namespace Vidly.Controllers
 
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(c => c.MovieGenre).ToList();
-            return View(movies);
+            if(User.IsInRole("CanManageMovies"))
+            {
+                return View("List");
+            }
+            return View("ReadOnlyView");
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
@@ -66,6 +70,7 @@ namespace Vidly.Controllers
             return View("MovieForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult MovieForm()
         {
             var viewModel = new MovieFormViewModel
