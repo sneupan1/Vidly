@@ -20,7 +20,6 @@ namespace Vidly.Controllers.API
         {
             _context = new ApplicationDbContext();
         }
-
         public IHttpActionResult GetMovies()
         {
             var moviesDto = _context.Movies
@@ -29,6 +28,16 @@ namespace Vidly.Controllers.API
                 .Select(Mapper.Map<Movie, MovieDto>);
             return Ok(moviesDto);
         }
+        //public IEnumerable<MovieDto> GetMovies(string query = null)
+        //{
+        //    var moviesQuery = _context.Movies
+        //        .Include(m => m.MovieGenre)
+        //        .Where(m => m.NumberAvailable > 0);
+        //    if (!String.IsNullOrWhiteSpace(query))
+        //        moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+
+        //    return moviesQuery.ToList().Select(Mapper.Map<Movie, MovieDto>);
+        //}
 
         public IHttpActionResult GetMovie(int id)
         {
